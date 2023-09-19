@@ -21,7 +21,6 @@ const mix = require('laravel-mix');
 mix.scripts([
     'node_modules/jquery/dist/jquery.js',
     'node_modules/pace-progress/pace.js',
-    'resources/assets/js/app.js',
 
 ], 'public/assets/app/js/app.js').version();
 
