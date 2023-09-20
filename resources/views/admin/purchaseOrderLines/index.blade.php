@@ -28,7 +28,7 @@
             <tbody>
             @foreach($purchaseOrderLines as $purchaseOrderLine)
                 <tr>
-                    <td>{{ $purchaseOrderLine->product_id }}</td>
+                    <td>{{ $purchaseOrderLine->product->product_name }}</td>
                     <td>{{ $purchaseOrderLine->qty }}</td>
                     <td>{{ $purchaseOrderLine->price }}</td>
                     <td>{{ $purchaseOrderLine->discount }}</td>

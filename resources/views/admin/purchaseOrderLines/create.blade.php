@@ -11,7 +11,7 @@
                         {{ __('views.admin.purchase.order.lines.create.product') }}
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select id="product" name="product[]" class="select2" multiple="multiple" style="width: 100%" autocomplete="off">
+                        <select id="product" name="product" class="select2" style="width: 100%" autocomplete="off">
                             @foreach($products as $product)
                                 <option value="{{ $product->id }}">{{ $product->product_name }}</option>
                             @endforeach
