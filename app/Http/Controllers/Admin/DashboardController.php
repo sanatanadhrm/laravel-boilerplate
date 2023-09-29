@@ -6,6 +6,7 @@ use App\Models\Auth\User\User;
 use Arcanedev\LogViewer\Entities\Log;
 use Arcanedev\LogViewer\Entities\LogEntry;
 use Carbon\Carbon;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Route;
@@ -104,6 +105,38 @@ class DashboardController extends Controller
             })->count(),
         ];
 
+        return response($data);
+    }
+
+    public function getReportingPage(){
+        $products =  Product::all();
+        return view('admin.reporting',["products" => $products]);
+    }
+
+    public function getAllDataProduct(){
+        $products =  Product::all();
+        for ($i=0; $i<count($products); $i++){
+            if ($products[$i]['price']<50000){
+                $products[$i]['price_range'] = 'less_50000';
+            }else if($products[$i]['price']>=50000 && $products[$i]['price']<99999){
+                $products[$i]['price_range'] = '_50000_99999';
+            }else if($products[$i]['price']>=100000 && $products[$i]['price']<999999){
+                $products[$i]['price_range'] = '_100000_999999';
+            }else{
+                $products[$i]['price_range'] = 'more_1000000';
+            }
+            $products[$i]['created_range'] = substr($products[$i]['created_at'], 0, 7);
+        }
+        return response($products);
+    }
+
+    public function getChartProduct(){
+        $data = [
+            "less_50000" => 50,
+            "_50000_99999" => 43,
+            "_100000_999999" => 343,
+            "more_1000000" =>  21
+        ];
         return response($data);
     }
 }
